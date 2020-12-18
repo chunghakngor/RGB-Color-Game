@@ -10,10 +10,13 @@ You can use either the following step to try the game out:
 * Clone the repo and open the `index.html` file with all the other files inside the same directory 
 
 ### Some further details:
-* There are 3 levels of difficulity
-* The game is responsive to all screen sizes
-* Incorrect answers make the square disappear
-* Correct answer will light up all the square to the correct answers
+* The goal of the game is to correctly pick the RGB colour from the square.
+* The current goal for each game is shown as `RGB(xxx,xxx,xxx)` format.
+* There are 3 levels of difficulity.
+* You may choose to restart the game whenever you want by pressing the `NEW COLORS` button.
+* The game is responsive to all screen sizes.
+* Incorrect answers make the square disappear.
+* Correct answer will light up all the square to the correct answers.
 
 
 ### Some screenshot from the game:
