@@ -1,5 +1,4 @@
-# Randomised RGB Color Game
-## [THE GREAT RGB Color GAME](https://chunghakngor.github.io/RGB-Color-Game/)
+# THE GREAT RGB Color GAME
 
 ### Instructions
 
