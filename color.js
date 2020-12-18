@@ -1,69 +1,109 @@
-var squares = document.querySelectorAll(".square");
-var totalSquares = 6;
-var reset = document.getElementById('new'); reset.addEventListener("click", updateGame);
-var modes = document.querySelectorAll('.mode');
-var currentMode = "Medium";
+// THE GREAT RGB Color GAME
+// Author: Chung Hak Ngor
 
-init();
-function init(){
-    for(var i = 0; i < modes.length; i++){
-        modes[i].addEventListener('click', function(){
-            for (var index = 0; index < modes.length; index++){modes[index].classList.remove('selected')}
-            this.classList.add("selected")
-            checkMode(this.textContent)
-            updateGame();
-        })}
-    updateGame();}
+const reset = document.getElementById("new");
+const modes = document.querySelectorAll(".mode");
+const squares = document.querySelectorAll(".square");
+const topBanner = document.getElementById("topBanner");
+const outputText = document.getElementById("outputText");
 
-function checkMode(currentMode){
-    if (currentMode == "Easy"){totalSquares = 3}
-    else if (currentMode == "Medium"){totalSquares = 6}
-    else {totalSquares = 9};}
-
-function displaySquares(num){
-    for (var index = 0; index < squares.length; index++){
-        if(index<num){squares[index].style.display = 'block'
-        } else{squares[index].style.display = 'none'}}}
+// default starting setting
+let totalSquares = 6;
+let currentMode = "Medium";
 
 // new game/colors
-var correct = Math.floor(Math.random() * totalSquares);
-var answer = squares[correct].style.backgroundColor.slice(3);
+let correct = Math.floor(Math.random() * totalSquares);
+let answer = squares[correct].style.backgroundColor.slice(3);
 
-function updateGame(){
-    for (let i = 0; i < totalSquares; i++) {
-        updateColorToRand(squares[i]);
-    reset.textContent = "New Colors";}
-    document.getElementById("outputText").textContent = "";
-    document.getElementById('topBanner').style.backgroundColor = "steelblue";
-    newAnswer();
-    displaySquares(totalSquares)};
+// check the current difficulity of the game
+const checkMode = (currentMode) => {
+	switch (currentMode) {
+		case "Easy":
+			totalSquares = 3;
+			break;
+		case "Medium":
+			totalSquares = 6;
+			break;
+		case "Hard":
+			totalSquares = 9;
+			break;
+		default:
+			totalSquares = 6;
+			break;
+	}
+};
 
-// generate new answer after reset
-function newAnswer() {
-    correct = Math.floor(Math.random() * totalSquares);
-    answer = squares[correct].style.backgroundColor.slice(3);
-    document.getElementById("correctAnswer").textContent = "RGB" + answer;};
+// display all the square depending on the difficulty of the game
+const displaySquares = (num) => {
+	for (let index = 0; index < squares.length; index++) {
+		index < num ? (squares[index].style.display = "block") : (squares[index].style.display = "none");
+	}
+};
 
-function updateColorToRand(targetSquare){
-    var r = Math.floor(Math.random() * 256);
-    var g = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
-    targetSquare.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
-    targetSquare.addEventListener("click",check_answer);}
+// update the grid to match the difficulity of the game and generate the first answer
+const updateGame = () => {
+	[...squares].map((square) => {
+		updateColorToRand(square);
+	});
+	outputText.textContent = "";
+	reset.textContent = "New Colors";
+	topBanner.style.backgroundColor = "steelblue";
+	newAnswer();
+	displaySquares(totalSquares);
+};
 
-// loop to check if the answer is correct
-function check_answer() {
-    var output = document.getElementById("outputText");
-    if (this.style.backgroundColor.slice(3) === answer) {
-        output.textContent = "Correct!";
-        reset.textContent = "New Game?";
-        updateAll(answer);
-    } else{
-        output.textContent = "Try Again!";
-        this.style.backgroundColor = "#232323";}};
+// generates a new answer for the game for a random square
+const newAnswer = () => {
+	correct = Math.floor(Math.random() * totalSquares);
+	answer = squares[correct].style.backgroundColor.slice(3);
+	document.getElementById("correctAnswer").textContent = "RGB" + answer;
+};
 
-// update when the correct answer is picked
-function updateAll(color){
-    for (let i = 0; i < totalSquares; i++){
-        squares[i].style.backgroundColor = "rgb" + color;
-        document.getElementById('topBanner').style.backgroundColor = "rgb" + color}};
+// updates all the square to the correct answer
+const updateToAnswerSquare = (color) => {
+	[...squares].map((square) => {
+		square.style.backgroundColor = "rgb" + color;
+	});
+	topBanner.style.backgroundColor = "rgb" + color;
+};
+
+// check if the answer selected is correct or not
+const check_answer = (event) => {
+	let squareSelected = event.path[0];
+	if (squareSelected.style.backgroundColor.slice(3) === answer) {
+		outputText.textContent = "Correct!";
+		reset.textContent = "New Game?";
+		updateToAnswerSquare(answer);
+	} else {
+		outputText.textContent = "Try Again!";
+		squareSelected.style.backgroundColor = "#232323";
+	}
+};
+
+const updateColorToRand = (targetSquare) => {
+	let r = Math.floor(Math.random() * 256);
+	let g = Math.floor(Math.random() * 256);
+	let b = Math.floor(Math.random() * 256);
+	targetSquare.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
+	targetSquare.addEventListener("click", (e) => check_answer(e));
+};
+
+const changeMode = (event) => {
+	const modeSelected = event.path[0];
+	[...modes].map((m) => {
+		m.classList.remove("selected");
+	});
+	modeSelected.classList.add("selected");
+	checkMode(modeSelected.textContent);
+	updateGame();
+};
+
+const main = () => {
+	reset.addEventListener("click", updateGame);
+	[...modes].map((mode) => {
+		mode.addEventListener("click", (e) => changeMode(e));
+	});
+	updateGame();
+};
+
+main();

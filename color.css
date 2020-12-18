@@ -1,92 +1,91 @@
-body{
-    background-color: #232323;
-    margin: 0;
-    font-family: "Avenir";
+body {
+	background-color: #232323;
+	margin: 0;
+	font-family: "Avenir";
 }
 
 /* heading */
-#topBanner{
-    background-color: steelblue;
-    margin: 0;
-    color:white;
+#topBanner {
+	background-color: steelblue;
+	margin: 0;
+	color: white;
 }
 
-h1{
-    text-align: center;
-    font-weight: normal;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 20px 0px;
-    line-height: 1.1;
+h1 {
+	text-align: center;
+	font-weight: normal;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 20px 0px;
+	line-height: 1.1;
 }
 
-h3{
-    color: white;
+h3 {
+	color: white;
 }
 
-#correctAnswer{
-    font-size: 150%;
+#correctAnswer {
+	font-size: 150%;
 }
 
 /* navbar */
-#navbar{
-    background-color: white;
-    height: 30px;
-    text-align: center;
+#navbar {
+	background-color: white;
+	height: 30px;
+	text-align: center;
 }
 
 /* buttons */
-.selected{
-    background-color:steelblue;
-    color: white;
+.selected {
+	background-color: steelblue;
+	color: white;
 }
 
-#xhard:hover{
-    background-color: grey;
+#xhard:hover {
+	background-color: grey;
 }
 
-button{
-    border: none;
-    background: none;
-    text-transform: uppercase;
-    height: 100%;
-    font-weight: 700;
-    color: steelblue;
-    letter-spacing: 1px;
-    font-size: inherit;
-    transition: all 0.3s; 
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    outline: none;
+button {
+	border: none;
+	background: none;
+	text-transform: uppercase;
+	height: 100%;
+	font-weight: 700;
+	color: steelblue;
+	letter-spacing: 1px;
+	font-size: inherit;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	outline: none;
 }
 
-button:hover{
-    background: steelblue;
-    color: white;
+button:hover {
+	background: steelblue;
+	color: white;
 }
 
 /* text */
-#outputText{
-    width: 20%;
-    display: inline-block;
+#outputText {
+	width: 20%;
+	display: inline-block;
 }
 
 /* main body */
-.square{
-    width: 30%;
-    background-color: grey;
-    padding-bottom: 30%;
-    float: left;
-    margin: 1.66%;
-    border-radius: 10%;
-    /* animation */
-    transition: background 1.0s;
-    -webkit-transition: background 1.0s;
-    -moz-transition: background 1.0s;
+.square {
+	width: 30%;
+	background-color: grey;
+	padding-bottom: 30%;
+	float: left;
+	margin: 1.66%;
+	border-radius: 10%;
+	/* animation */
+	transition: background 1s;
+	-webkit-transition: background 1s;
+	-moz-transition: background 1s;
 }
 
-#container{
-    max-width: 450px;
-    margin: 15px auto;
+#container {
+	max-width: 450px;
+	margin: 15px auto;
 }
-
