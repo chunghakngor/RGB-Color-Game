@@ -87,20 +87,19 @@ const updateColorToRand = (targetSquare) => {
 	targetSquare.addEventListener("click", () => check_answer(targetSquare));
 };
 
-const changeMode = (event) => {
-	const modeSelected = event.path[0];
+const changeMode = (mode) => {
 	[...modes].map((m) => {
 		m.classList.remove("selected");
 	});
-	modeSelected.classList.add("selected");
-	checkMode(modeSelected.textContent);
+	mode.classList.add("selected");
+	checkMode(mode.textContent);
 	updateGame();
 };
 
 const main = () => {
 	reset.addEventListener("click", updateGame);
 	[...modes].map((mode) => {
-		mode.addEventListener("click", (e) => changeMode(e));
+		mode.addEventListener("click", () => changeMode(mode));
 	});
 	updateGame();
 };
