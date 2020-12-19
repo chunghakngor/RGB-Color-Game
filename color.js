@@ -68,15 +68,14 @@ const updateToAnswerSquare = (color) => {
 };
 
 // check if the answer selected is correct or not
-const check_answer = (event) => {
-	let squareSelected = event.path[0];
-	if (squareSelected.style.backgroundColor.slice(3) === answer) {
+const check_answer = (targetSquare) => {
+	if (targetSquare.style.backgroundColor.slice(3) === answer) {
 		outputText.textContent = "Correct!";
 		reset.textContent = "New Game?";
 		updateToAnswerSquare(answer);
 	} else {
 		outputText.textContent = "Try Again!";
-		squareSelected.style.backgroundColor = "#232323";
+		targetSquare.style.backgroundColor = "#232323";
 	}
 };
 
@@ -85,7 +84,7 @@ const updateColorToRand = (targetSquare) => {
 	let g = Math.floor(Math.random() * 256);
 	let b = Math.floor(Math.random() * 256);
 	targetSquare.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
-	targetSquare.addEventListener("click", (e) => check_answer(e));
+	targetSquare.addEventListener("click", () => check_answer(targetSquare));
 };
 
 const changeMode = (event) => {
